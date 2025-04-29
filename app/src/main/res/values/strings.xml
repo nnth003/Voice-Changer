@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MVVM-Architecture-Compose</string>
+    <string name="error_generic">Unexpected error</string>
+</resources>
