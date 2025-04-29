@@ -30,7 +30,7 @@ Base project Android with Jetpack Compose, Hilt, Coroutines, Flow, Jetpack (Room
 
 # License
 ```xml
-Designed and developed by 2023 ThuanPx
+Designed and developed by 2023 pixelzlab
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

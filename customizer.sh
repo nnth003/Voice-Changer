@@ -47,11 +47,11 @@ done
 
 # Rename package and imports
 echo "Renaming packages to $PACKAGE"
-find ./ -type f -name "*.kt" -exec sed -i.bak "s/package com.thuanpx/mvvm_compose/package $PACKAGE/g" {} \;
-find ./ -type f -name "*.kt" -exec sed -i.bak "s/import com.thuanpx/mvvm_compose/import $PACKAGE/g" {} \;
+find ./ -type f -name "*.kt" -exec sed -i.bak "s/package com.pixelzlab/app/package $PACKAGE/g" {} \;
+find ./ -type f -name "*.kt" -exec sed -i.bak "s/import com.pixelzlab/app/import $PACKAGE/g" {} \;
 
 # Gradle files
-find ./ -type f -name "*.kts" -exec sed -i.bak "s/com.thuanpx/mvvm_compose/$PACKAGE/g" {} \;
+find ./ -type f -name "*.kts" -exec sed -i.bak "s/com.pixelzlab/app/$PACKAGE/g" {} \;
 
 # Rename model
 #echo "Renaming model to $DATAMODEL"

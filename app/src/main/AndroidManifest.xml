@@ -9,7 +9,7 @@
         tools:node="remove" />
 
     <application
-        android:name=".App"
+        android:name="com.pixelzlab.app.App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -24,7 +24,7 @@
             tools:targetApi="29" />
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.pixelzlab.app.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MVVMArchitectureCompose">

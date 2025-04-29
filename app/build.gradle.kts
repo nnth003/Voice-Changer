@@ -8,10 +8,10 @@ plugins {
 }
 
 android {
-    namespace = "com.thuanpx.mvvm_compose"
+    namespace = "com.pixelzlab.app"
 
     defaultConfig {
-        applicationId = "com.thuanpx.mvvm_compose"
+        applicationId = "com.pixelzlab.app"
 
         vectorDrawables {
             useSupportLibrary = true

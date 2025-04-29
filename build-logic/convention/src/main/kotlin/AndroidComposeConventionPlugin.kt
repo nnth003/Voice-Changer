@@ -1,5 +1,5 @@
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
-import com.thuanpx.configureAndroidCompose
+import com.pixelzlab.configureAndroidCompose
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
