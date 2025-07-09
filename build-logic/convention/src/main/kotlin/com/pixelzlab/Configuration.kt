@@ -3,8 +3,8 @@ package com.pixelzlab
 import org.gradle.api.JavaVersion
 
 object Configuration {
-    const val compileSdk = 34
-    const val targetSdk = 34
+    const val compileSdk = 35
+    const val targetSdk = 35
     const val minSdk = 30
     const val buildToolsVersion = "30.0.3"
     const val majorVersion = 1
