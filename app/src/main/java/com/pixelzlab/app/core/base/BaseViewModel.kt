@@ -7,13 +7,17 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
+import kotlin.time.Duration.Companion.seconds
 
 abstract class BaseViewModel : ViewModel() {
 
@@ -50,22 +54,47 @@ abstract class BaseViewModel : ViewModel() {
 
     protected fun launch(context: CoroutineContext = EmptyCoroutineContext, job: suspend () -> Unit) =
         viewModelScope.launch(context) {
-            job.invoke()
+            try {
+                job.invoke()
+            } catch (e: Exception) {
+                Timber.e(e, "Uncaught exception in coroutine")
+                _error.value = e
+            }
         }
 
     protected fun <T> Flow<T>.loading(): Flow<T> = this
         .onStart { showLoading() }
         .onCompletion { hideLoading() }
 
+    /**
+     * Converts Flow to StateFlow with proper error handling and automatic collection
+     * Based on Now in Android pattern
+     */
+    protected fun <T> Flow<T>.stateWithLoading(
+        initialValue: T,
+        started: SharingStarted = SharingStarted.WhileSubscribed(5000L)
+    ): StateFlow<T> = this
+        .loading()
+        .catch { e -> 
+            Timber.e(e, "Error in stateWithLoading")
+            _error.value = e
+        }
+        .stateIn(
+            scope = viewModelScope,
+            started = started,
+            initialValue = initialValue
+        )
+
     suspend fun <T> Flow<T>.async(
         action: suspend (T) -> Unit
     ) {
-        this.loading()
-            .catch {
-                _error.emit(it)
+        try {
+            this.collect { value ->
+                action(value)
             }
-            .collect {
-                action.invoke(it)
-            }
+        } catch (e: Exception) {
+            Timber.e(e, "Error in async flow")
+            _error.value = e
+        }
     }
 }

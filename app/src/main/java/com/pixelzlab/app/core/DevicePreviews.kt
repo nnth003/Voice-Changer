@@ -1,13 +1,21 @@
 package com.pixelzlab.app.core
 
+import android.content.res.Configuration
 import androidx.compose.ui.tooling.preview.Preview
 
 /**
- * Multi preview annotation that represents various device sizes. Add this annotation to a composable
- * to render various devices.
+ * Preview annotation for phone form factor in both dark and light modes
  */
-
-@Preview(name = "Phone", device = "spec:width=360dp,height=640dp,dpi=480")
+@Preview(
+    name = "Phone - Light",
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    showBackground = true,
+)
+@Preview(
+    name = "Phone - Dark",
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true,
+)
 annotation class PhoneDevicePreviews
 
 @Preview(name = "Tablet", device = "spec:width=1280dp,height=800dp,dpi=480")

@@ -75,7 +75,7 @@ fun BaseScreen(
 
 @Preview
 @Composable
-private fun BaseScreenPreview() {
+fun BaseScreenPreview() {
     AppThemePreview {
         BaseScreen(
             showLoading = true

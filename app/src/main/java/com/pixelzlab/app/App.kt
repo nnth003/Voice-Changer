@@ -1,41 +1,65 @@
 package com.pixelzlab.app
 
 import android.app.Application
+import android.os.StrictMode
+import androidx.tracing.Trace
 import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.decode.SvgDecoder
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
+import javax.inject.Inject
+import javax.inject.Provider
 
 /**
- * Created by pixelzlab on 07/09/2022.
+ * Application class with enhanced startup monitoring and performance features
  */
 @HiltAndroidApp
 class App : Application(), ImageLoaderFactory {
 
+    @Inject
+    lateinit var imageLoader: Provider<ImageLoader>
+
     override fun onCreate() {
+        // Enable tracing for app startup
+        Trace.beginSection("AppStartup")
         super.onCreate()
-        configTimber()
+        
+        setupStrictMode()
+        
+        Trace.endSection()
     }
 
-    private fun configTimber() {
+    /**
+     * Setup StrictMode for development builds
+     */
+    private fun setupStrictMode() {
         if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
+            StrictMode.setThreadPolicy(
+                StrictMode.ThreadPolicy.Builder()
+                    .detectDiskReads()
+                    .detectDiskWrites()
+                    .detectNetwork()
+                    .penaltyLog()
+                    .build()
+            )
+            
+            StrictMode.setVmPolicy(
+                StrictMode.VmPolicy.Builder()
+                    .detectLeakedSqlLiteObjects()
+                    .detectLeakedClosableObjects()
+                    .detectActivityLeaks()
+                    .penaltyLog()
+                    .build()
+            )
         }
     }
 
     /**
-     * Since we're displaying SVGs in the app, Coil needs an ImageLoader which supports this
-     * format. During Coil's initialization it will call `applicationContext.newImageLoader()` to
-     * obtain an ImageLoader.
-     *
-     * @see https://github.com/coil-kt/coil/blob/main/coil-singleton/src/main/java/coil/Coil.kt#L63
+     * Provide Coil ImageLoader with SVG support
+     * Now using Hilt to inject the ImageLoader for better testability
      */
     override fun newImageLoader(): ImageLoader {
-        return ImageLoader.Builder(this)
-            .components {
-                add(SvgDecoder.Factory())
-            }
-            .build()
+        return imageLoader.get()
     }
 }

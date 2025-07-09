@@ -11,7 +11,7 @@ import androidx.lifecycle.LifecycleOwner
 
 /**
  * Created by pixelzlab on 17/06/2023.
- * https://proandroiddev.com/jetpack-compose-making-composable-lifecycle-aware-bde67437d2d0
+ * https://proandroiddev.com/-making-composable-lifecycle-aware-bde67437d2d0
  */
 @Composable
 fun DisposableEffectWithLifecycle(

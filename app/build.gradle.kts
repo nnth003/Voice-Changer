@@ -5,6 +5,7 @@ plugins {
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp")
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.0"
 }
 
 android {
@@ -64,6 +65,9 @@ dependencies {
     implementation(libs.coil.kt.svg)
 
     implementation(libs.kotlinx.coroutines.android)
+    
+    // Kotlinx Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
@@ -96,7 +100,8 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity.compose)
-
+    implementation(libs.androidx.startup)
+    implementation(libs.androidx.tracing.ktx)
 }
 
 if (file("google-services.json").exists()) {

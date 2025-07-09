@@ -25,7 +25,7 @@ Base project Android with Jetpack Compose, Hilt, Coroutines, Flow, Jetpack (Room
 - [Moshi](https://github.com/square/moshi) - Moshi is a modern JSON library for Android, Java and Kotlin.
 - [Coil](https://github.com/coil-kt/coil) - An image loading library for Android backed by Kotlin Coroutines.
 - [Timber](https://github.com/JakeWharton/timber) - A logger with a small, extensible API.
-- [Material3](https://m3.material.io/develop/android/jetpack-compose) - Material 3 is the latest version of Google’s open-source design system. Design and build beautiful, usable products with Material 3.
+- [Material3](https://m3.material.io/develop/android/) - Material 3 is the latest version of Google’s open-source design system. Design and build beautiful, usable products with Material 3.
 - [Baseline Profiles](https://developer.android.com/topic/performance/baselineprofiles/overview) - Baseline Profiles improve code execution speed by around 30% from the first launch.
 
 # License

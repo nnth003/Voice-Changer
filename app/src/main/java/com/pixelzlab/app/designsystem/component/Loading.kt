@@ -28,7 +28,7 @@ fun AppLoading(
 
 @Preview
 @Composable
-private fun AppLoadingPreview() {
+fun AppLoadingPreview() {
     AppThemePreview {
         AppLoading()
     }

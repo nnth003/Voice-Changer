@@ -123,7 +123,7 @@ fun AppAlertDialog(
 
 @Preview
 @Composable
-private fun AppPopupPreview() {
+fun AppPopupPreview() {
     AppThemePreview {
         AppAlertDialog(
             title = "Thông báo",
