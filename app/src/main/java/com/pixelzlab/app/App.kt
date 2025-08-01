@@ -5,9 +5,7 @@ import android.os.StrictMode
 import androidx.tracing.Trace
 import coil.ImageLoader
 import coil.ImageLoaderFactory
-import coil.decode.SvgDecoder
 import dagger.hilt.android.HiltAndroidApp
-import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Provider
 

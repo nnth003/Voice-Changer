@@ -70,6 +70,6 @@ fun NavGraphBuilder.detailScreen(
         val decodedString = URLDecoder.decode(encodedPokemon, "UTF-8")
         val pokemon = Json.decodeFromString<Pokemon>(decodedString)
         
-        DetailRoute(pokemon = pokemon)
+        DetailRoute(pokemon = pokemon, onBackClick = onBackClick)
     }
 } 

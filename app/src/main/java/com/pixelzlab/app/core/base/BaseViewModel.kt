@@ -17,7 +17,6 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
-import kotlin.time.Duration.Companion.seconds
 
 abstract class BaseViewModel : ViewModel() {
 

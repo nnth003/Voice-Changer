@@ -18,6 +18,8 @@ sealed class AppDestination(val route: String = "") {
 
     object Splash: AppDestination("splash")
 
+    object FragmentScreen : AppDestination("fragment_screen")
+
     object Up : AppDestination()
 
     object Home : AppDestination("home")
