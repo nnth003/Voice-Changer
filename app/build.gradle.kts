@@ -6,6 +6,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp")
     id("org.jetbrains.kotlin.plugin.serialization") version "2.0.0"
+//    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -47,6 +48,12 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    applicationVariants.all {
+        outputs.all {
+            val outputImpl = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
+            outputImpl.outputFileName = "VoiceChangerNative.apk"
+        }
+    }
 }
 
 dependencies {
@@ -59,18 +66,37 @@ dependencies {
     implementation(libs.compose.foundation.layout)
     implementation(libs.compose.material)
     implementation(libs.compose.material3)
+    // Material Icon Extended
+    implementation("androidx.compose.material:material-icons-extended:1.7.8")
 
     implementation(libs.coil.kt)
     implementation(libs.coil.kt.compose)
     implementation(libs.coil.kt.svg)
 
     implementation(libs.kotlinx.coroutines.android)
-    
+
+    //Exo Player
+//    implementation("androidx.media3:media3-exoplayer:1.4.0")
+//    implementation("androidx.media3:media3-exoplayer-dash:1.4.0")
+//    implementation("com.mrljdx:ffmpegkit-kmp-android:0.1.3")
+//    implementation("com.github.st-h:TarsosDSP:2.4.1")
+//    implementation ("com.arthenica:ffmpeg-kit-full-gpl:6.0-2")
+//    implementation("")
+//    implementation("com.github.iDeMonnnnnn.DeMon_Sound:FmodSound:1.1")
+//    implementation("com.github.iDeMonnnnnn.DeMon_Sound:SoundCoding:1.1")
+//
+//    implementation("be.tarsos.dsp:core:2.5")
+//    implementation("be.tarsos.dsp:jvm:2.5")
+
     // Kotlinx Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.material)
+    implementation("androidx.compose.material3:material3:1.3.2")
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
     ksp(libs.hilt.compiler)
 
     implementation(libs.dataStore.preferences)
@@ -90,6 +116,10 @@ dependencies {
     releaseImplementation(libs.chucker.library.no.op)
 
     implementation(libs.timber)
+
+    //navigation XML
+    implementation("androidx.navigation:navigation-fragment-ktx:2.9.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.9.0")
 
     implementation(libs.navigation.compose)
 
